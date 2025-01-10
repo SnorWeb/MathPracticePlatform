@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MathPracticePlatform"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Math Practice Platform"
+        WindowState="Maximized"
+        >
     <Grid>
-        <TextBlock Text="{Binding WelcomeMessage}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="black"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
