@@ -1,4 +1,4 @@
-﻿<Page x:Class="MathPracticePlatform.Views.MainFrame"
+﻿<Page x:Class="MathPracticePlatform.Views.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,9 +6,10 @@
       xmlns:local="clr-namespace:MathPracticePlatform.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Hoofdscherm">
-    <Viewbox Stretch="Uniform">
-        <Grid>
+      Title="MainPage">
+
+    <Grid>
+        
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -22,8 +23,8 @@
             <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="btnVermeningvuldigen" Content="Vermenigvuldigen" Click="btnVermenigvuldigen_Click" Margin="5" />
                 <Button x:Name="btnOpties" Content="Opties" Click="btnOpties_Click" Margin="5" />
-                <Button x:Name="btnAfsluiten" Content="Afsluiten" Click="btnAfsluiten_Click" Margin="5"/>
+                <Button x:Name="btnAfsluiten" Content="Afsluiten" Click="btnAfsluiten_Click" Margin="5" />
             </StackPanel>
-        </Grid>
-    </Viewbox>
+        
+    </Grid>
 </Page>

@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="Math Practice Platform"
         WindowState="Maximized"
-        WindowStyle="None"
-        ResizeMode="NoResize">
+        >
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

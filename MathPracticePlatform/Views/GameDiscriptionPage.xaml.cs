@@ -4,32 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using MathPracticePlatform.Views;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MathPracticePlatform.ViewModels;
 using MathPracticePlatform.Services;
 
-namespace MathPracticePlatform
+namespace MathPracticePlatform.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GameDiscriptionPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GameDiscriptionPage : Page
     {
-        public MainWindow()
+        public GameDiscriptionPage(string description, Action startGameAction, Action backToMainMenuAction)
         {
             InitializeComponent();
-            if (MainFrame == null)
-            {
-                MessageBox.Show("MainFrame is null!");
-            }
-            CustomNavigationService.Instance.Initialize(MainFrame);
-            CustomNavigationService.Instance.Navigate(new Views.MainPage());
+            
+            DataContext = new GameDescriptionViewModel(description, startGameAction, backToMainMenuAction);
         }
     }
 }
