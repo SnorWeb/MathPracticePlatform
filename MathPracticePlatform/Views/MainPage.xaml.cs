@@ -33,7 +33,7 @@ namespace MathPracticePlatform.Views
             string description = "Maak de 20 vermenigvuldigingen binnen de 3 minuten.\nVeel succes!";
             CustomNavigationService.Instance.Navigate(new GameDiscriptionPage(
                 description, 
-                StartMultiplicationGame, 
+                () => CustomNavigationService.Instance.Navigate(new ExercisePage()), 
                 () => CustomNavigationService.Instance.Navigate(new MainPage())
                 ));
         }
