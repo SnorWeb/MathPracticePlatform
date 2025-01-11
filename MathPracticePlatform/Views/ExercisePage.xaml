@@ -1,0 +1,57 @@
+﻿<Page x:Class="MathPracticePlatform.Views.ExercisePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MathPracticePlatform.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ExercisePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grdTop">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="grdTopLeft">
+                <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Grid>
+            <Grid x:Name="grdTopCenter" Grid.Column="1">
+                <TextBlock x:Name="txtTimer" Text="{Binding Timer}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Grid>
+            <Grid x:Name="grdTopRight" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock x:Name="txtAantalOefeningen" Text="Oefeningen: " HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="txtScore" Text="Score: " HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="txtFouten" Text="Fouten: " HorizontalAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="txtAantalOefeningenValue" Text="{Binding AantalOefeningen}"/>
+                    <TextBlock x:Name="txtScoreValue" Text="{Binding Score}"/>
+                    <TextBlock x:Name="txtFoutenValue" Text="{Binding Fouten}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid x:Name="grdCenter" Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding HuidigeOefening}" FontSize="30"/>
+            <TextBlock Grid.Column="1" Text="=" FontSize="30" Margin="10"/>
+            <TextBlock Grid.Column="2" Text="{Binding UserAntwoord, UpdateSourceTrigger=PropertyChanged}" FontSize="30" Width="100"/>
+        </Grid>
+    </Grid>
+</Page>
