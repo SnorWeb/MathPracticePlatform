@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid x:Name="grdTopLeft">
-                <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Button x:Name="btnBack" Content="Back" Command="{Binding NavigateBackCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </Grid>
             <Grid x:Name="grdTopCenter" Grid.Column="1">
                 <TextBlock x:Name="txtTimer" Text="{Binding Timer}" HorizontalAlignment="Center" VerticalAlignment="Top"/>

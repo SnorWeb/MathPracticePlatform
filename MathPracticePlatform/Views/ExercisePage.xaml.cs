@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MathPracticePlatform.ViewModels;
 
 namespace MathPracticePlatform.Views
 {
@@ -23,6 +24,7 @@ namespace MathPracticePlatform.Views
         public ExercisePage()
         {
             InitializeComponent();
+            DataContext = new ExercisePageViewModel();
         }
     }
 }
