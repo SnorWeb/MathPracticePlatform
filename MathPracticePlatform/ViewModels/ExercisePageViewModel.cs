@@ -12,7 +12,7 @@ namespace MathPracticePlatform.ViewModels
 {
     public class ExercisePageViewModel : BaseViewModel
     {
-        private string _timer;
+        private string _timerDisplay;
         private string _huidigeOefening;
         private string _userAntwoord;
 
@@ -20,16 +20,44 @@ namespace MathPracticePlatform.ViewModels
         private int _score;
         private int _fouten;
 
+        private TimerService _timerService;
+
+        public string TimerDisplay
+        {
+            get => _timerDisplay;
+            set => SetProperty(ref _timerDisplay, value);
+        }
+
         public ICommand NavigateBackCommand { get; }
 
         public ExercisePageViewModel()
         {
+            //instance of the timer service
+            _timerService = new TimerService(180, isCountDown: true);
+            _timerService.TimeUpdated += UpdatTimerDispclay;
+            _timerService.TimerFinished += OnTimerFinished;
+
+            //start the timer
+            _timerService.Start();
+
             NavigateBackCommand = new RelayCommand(GoBack);
+        }
+
+        private void UpdatTimerDispclay(int timeInSeconds)
+        {
+            TimerDisplay = TimeSpan.FromSeconds(timeInSeconds).ToString(@"mm\:ss");
+        }
+
+        private void OnTimerFinished()
+        {
+            TimerDisplay = "Tijd is op";
         }
 
         private void GoBack()
         {
             CustomNavigationService.Instance.Navigate(new MainPage());
         }
+
+
     }
 }

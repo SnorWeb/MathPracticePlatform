@@ -24,7 +24,7 @@
                 <Button x:Name="btnBack" Content="Back" Command="{Binding NavigateBackCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </Grid>
             <Grid x:Name="grdTopCenter" Grid.Column="1">
-                <TextBlock x:Name="txtTimer" Text="{Binding Timer}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock x:Name="txtTimer" Text="{Binding TimerDisplay, FallbackValue='Binding Failed'}" HorizontalAlignment="Center" VerticalAlignment="Top" />
             </Grid>
             <Grid x:Name="grdTopRight" Grid.Column="2">
                 <Grid.ColumnDefinitions>
