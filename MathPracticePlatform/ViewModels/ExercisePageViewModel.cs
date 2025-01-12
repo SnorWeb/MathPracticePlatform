@@ -33,7 +33,7 @@ namespace MathPracticePlatform.ViewModels
         public ExercisePageViewModel()
         {
             //instance of the timer service
-            _timerService = new TimerService(180, isCountDown: true);
+            _timerService = new TimerService(5, isCountDown: true);
             _timerService.TimeUpdated += UpdatTimerDispclay;
             _timerService.TimerFinished += OnTimerFinished;
 
@@ -50,7 +50,7 @@ namespace MathPracticePlatform.ViewModels
 
         private void OnTimerFinished()
         {
-            TimerDisplay = "Tijd is op";
+            CustomNavigationService.Instance.Navigate(new ResultsPage());
         }
 
         private void GoBack()
