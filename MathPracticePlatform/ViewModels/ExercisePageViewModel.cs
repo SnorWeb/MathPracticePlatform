@@ -71,7 +71,7 @@ namespace MathPracticePlatform.ViewModels
             set => SetProperty(ref _isFocusd, value);
         }
 
-        public List<string> FouteOefeningen
+        public List<string> FoutenOefeningen
         {
             get => _fouteOefeningen;
             set => SetProperty(ref _fouteOefeningen, value);
@@ -144,7 +144,7 @@ namespace MathPracticePlatform.ViewModels
 
             if (_oefeningTeller >= 20)
             {
-                CustomNavigationService.Instance.Navigate(new ResultsPage());
+                NavigateToNextPage();
                 return;
             }
 
@@ -155,6 +155,10 @@ namespace MathPracticePlatform.ViewModels
             IsFocused = true;
         }
 
+        private void NavigateToNextPage()
+        {
+            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score));
+        }
 
         private void UpdatTimerDispclay(int timeInSeconds)
         {
@@ -163,7 +167,7 @@ namespace MathPracticePlatform.ViewModels
 
         private void OnTimerFinished()
         {
-            CustomNavigationService.Instance.Navigate(new ResultsPage());
+            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score));
         }
 
         private void GoBack()

@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace MathPracticePlatform.ViewModels
 {
-    class ResultsViewModel
+    public class ResultsViewModel : BaseViewModel
     {
+        public int Score { get; }
+        public List<string> FoutenOefeningen { get;}
+
+        public ResultsViewModel(List<string> foutenOefeningen, int score)
+        {
+            FoutenOefeningen = foutenOefeningen;
+            Score = score;
+        }
     }
 }
