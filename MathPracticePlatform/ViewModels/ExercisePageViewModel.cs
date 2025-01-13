@@ -144,7 +144,7 @@ namespace MathPracticePlatform.ViewModels
 
             if (_oefeningTeller >= 20)
             {
-                CustomNavigationService.Instance.Navigate());
+                CustomNavigationService.Instance.Navigate(new ResultsPage());
                 return;
             }
 
@@ -168,7 +168,11 @@ namespace MathPracticePlatform.ViewModels
 
         private void GoBack()
         {
-            CustomNavigationService.Instance.Navigate(new MainPage());
+            if(MessageBox.Show("Alle voortgang gaat verloren en word niet opgeslagen. Ben je zeker dat je wilt stoppen?", "Waarschuwing", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                CustomNavigationService.Instance.Navigate(new MainPage());
+            }
+                
         }
 
 
