@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:MathPracticePlatform"
         mc:Ignorable="d"
         Title="Math Practice Platform"
-        WindowState="Maximized"
-        >
+        WindowState="Maximized">
+    <Window.Background>
+        <ImageBrush ImageSource="/Resources/Images/achtergrond2.jpeg" />
+    </Window.Background>
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
