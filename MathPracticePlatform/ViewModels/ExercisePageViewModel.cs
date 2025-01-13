@@ -126,11 +126,11 @@ namespace MathPracticePlatform.ViewModels
                 if (antwoord == _correctAntwoord)
                 {
                     Score++;
-                    _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord}");
                 }
                 else
                 {
                     Fouten++;
+                    _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord}");
                 }
             }
             else

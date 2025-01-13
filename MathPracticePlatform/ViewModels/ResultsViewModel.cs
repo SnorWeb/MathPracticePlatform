@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MathPracticePlatform.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MathPracticePlatform.Views;
 
 namespace MathPracticePlatform.ViewModels
 {
@@ -12,6 +15,7 @@ namespace MathPracticePlatform.ViewModels
         public string _foutenLijst;
         public int Score { get; }
         public List<string> FoutenOefeningen { get;}
+        
 
         public string Eindscore
         {
@@ -25,11 +29,28 @@ namespace MathPracticePlatform.ViewModels
             set => SetProperty(ref _foutenLijst, value);
         }
 
+        public ICommand ButtonBackCommand { get; }
+        public ICommand ButtonRestartCommand { get; }
+
         public ResultsViewModel(List<string> foutenOefeningen, int score)
         {
             FoutenOefeningen = foutenOefeningen;
             Score = score;
+
+            ButtonBackCommand = new RelayCommand(GoBack);
+            ButtonRestartCommand = new RelayCommand(Restart);
+
             AddContent();
+        }
+
+        private void Restart(object obj)
+        {
+            CustomNavigationService.Instance.Navigate(new ExercisePage());
+        }
+
+        private void GoBack(object obj)
+        {
+            CustomNavigationService.Instance.Navigate(new MainPage());
         }
 
         private void AddContent()
