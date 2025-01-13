@@ -26,9 +26,9 @@
             </Grid.RowDefinitions>
             <StackPanel>
                 <TextBlock Text="Results" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding Score, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <TextBlock Text="Volgende oefeningen waren fout: " FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding FoutenOefening, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding FoutenLijst, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="btnBack" Content="Hoofdmenu" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonBackCommand}"/>

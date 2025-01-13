@@ -105,8 +105,8 @@ namespace MathPracticePlatform.ViewModels
             AantalOefeningen = $"0/20";
             Score = 0;
             Fouten = 0;
+            _fouteOefeningen.Clear();
             GenereerNieuweOefening();
-            
         }
 
         private void GenereerNieuweOefening()
@@ -126,7 +126,7 @@ namespace MathPracticePlatform.ViewModels
                 if (antwoord == _correctAntwoord)
                 {
                     Score++;
-                    _fouteOefeningen.Add($"Vraag: {_correctAntwoord} = {antwoord} (fout)");
+                    _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord}");
                 }
                 else
                 {
@@ -136,7 +136,7 @@ namespace MathPracticePlatform.ViewModels
             else
             {
                 Fouten++;
-                _fouteOefeningen.Add($"Vraag: {_correctAntwoord} = ? (Geen invoer)");
+                _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord} (verkeerde input)");
             }
 
             _oefeningTeller++;
