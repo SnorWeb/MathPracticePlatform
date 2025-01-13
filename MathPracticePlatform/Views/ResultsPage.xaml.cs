@@ -21,10 +21,10 @@ namespace MathPracticePlatform.Views
     /// </summary>
     public partial class ResultsPage : Page
     {
-        public ResultsPage()
+        public ResultsPage(List<string> foutenOefeningen, int score, int overgeblevenTijd)
         {
             InitializeComponent();
-            //DataContext = new ResultsPageViewModel();
+            DataContext = new ResultsViewModel(foutenOefeningen, score, overgeblevenTijd);
         }
     }
 }

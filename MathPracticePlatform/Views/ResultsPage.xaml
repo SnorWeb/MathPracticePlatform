@@ -9,6 +9,31 @@
       Title="ResultsPage">
 
     <Grid>
-        <TextBlock x:Name="txtResults" Text="Results" FontSize="80" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="content" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock Text="Results" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Volgende oefeningen waren fout: " FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding FoutenLijst, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnBack" Content="Hoofdmenu" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonBackCommand}"/>
+                <Button x:Name="btnRestart" Content="Nog eens" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonRestartCommand}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

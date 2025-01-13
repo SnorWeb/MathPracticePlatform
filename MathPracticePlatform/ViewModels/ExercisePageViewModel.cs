@@ -22,6 +22,7 @@ namespace MathPracticePlatform.ViewModels
         private int _fouten;
         private int _score;
         private int _oefeningTeller;
+        private int _overgeblevenTijd;
 
         private bool _isFocusd;
 
@@ -65,13 +66,19 @@ namespace MathPracticePlatform.ViewModels
             set => SetProperty(ref _score, value);
         }
 
+        public int OvergeblevenTijd
+        {
+            get => _overgeblevenTijd;
+            set => SetProperty(ref _overgeblevenTijd, value);
+        }
+
         private bool IsFocused
         {
             get => _isFocusd;
             set => SetProperty(ref _isFocusd, value);
         }
 
-        public List<string> FouteOefeningen
+        public List<string> FoutenOefeningen
         {
             get => _fouteOefeningen;
             set => SetProperty(ref _fouteOefeningen, value);
@@ -85,7 +92,7 @@ namespace MathPracticePlatform.ViewModels
             //instance of the timer service
             _timerService = new TimerService(180, isCountDown: true);
             _timerService.TimeUpdated += UpdatTimerDispclay;
-            _timerService.TimerFinished += OnTimerFinished;
+            _timerService.TimerFinished += NavigateToNextPage;
             _timerService.Start();
 
             //instance of the exercise service
@@ -105,8 +112,8 @@ namespace MathPracticePlatform.ViewModels
             AantalOefeningen = $"0/20";
             Score = 0;
             Fouten = 0;
+            _fouteOefeningen.Clear();
             GenereerNieuweOefening();
-            
         }
 
         private void GenereerNieuweOefening()
@@ -126,17 +133,17 @@ namespace MathPracticePlatform.ViewModels
                 if (antwoord == _correctAntwoord)
                 {
                     Score++;
-                    _fouteOefeningen.Add($"Vraag: {_correctAntwoord} = {antwoord} (fout)");
                 }
                 else
                 {
                     Fouten++;
+                    _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord}");
                 }
             }
             else
             {
                 Fouten++;
-                _fouteOefeningen.Add($"Vraag: {_correctAntwoord} = ? (Geen invoer)");
+                _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord} (verkeerde input)");
             }
 
             _oefeningTeller++;
@@ -144,7 +151,7 @@ namespace MathPracticePlatform.ViewModels
 
             if (_oefeningTeller >= 20)
             {
-                CustomNavigationService.Instance.Navigate(new ResultsPage());
+                NavigateToNextPage();
                 return;
             }
 
@@ -155,15 +162,28 @@ namespace MathPracticePlatform.ViewModels
             IsFocused = true;
         }
 
+        private void NavigateToNextPage()
+        {
+
+            CalculateRemainingTime();
+            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score, OvergeblevenTijd));
+        }
+
+        private void CalculateRemainingTime()
+        {
+           if (_timerService.GetRemainingTime() > 0)
+            {
+                OvergeblevenTijd = 180 - _timerService.GetRemainingTime();
+            }
+            else
+            {
+                OvergeblevenTijd = 0;
+            }
+        }
 
         private void UpdatTimerDispclay(int timeInSeconds)
         {
             TimerDisplay = TimeSpan.FromSeconds(timeInSeconds).ToString(@"mm\:ss");
-        }
-
-        private void OnTimerFinished()
-        {
-            CustomNavigationService.Instance.Navigate(new ResultsPage());
         }
 
         private void GoBack()
@@ -174,7 +194,5 @@ namespace MathPracticePlatform.ViewModels
             }
                 
         }
-
-
     }
 }

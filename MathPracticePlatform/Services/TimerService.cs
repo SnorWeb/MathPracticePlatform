@@ -53,6 +53,11 @@ namespace MathPracticePlatform.Services
             _timer.Stop();
         }
 
+        public int GetRemainingTime()
+        {
+            return _currentTime;
+        }   
+
         public void Reset(int newStartTime)
         {
             Stop();
