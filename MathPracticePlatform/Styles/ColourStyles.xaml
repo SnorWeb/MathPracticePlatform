@@ -1,4 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="clrTransBlue">#77b4b9ad</Color>
+    <Color x:Key="clrLightblue">#3d8dc4</Color>
+    <Color x:Key="clrWhite">#ffffff</Color>
+    <Color x:Key="clrDarkBlue">#1a4563</Color>
+
+    <!--Grid Background Colours-->
+    <SolidColorBrush x:Key="grdBackTransBlue" Color="{StaticResource clrTransBlue}"/>
     
+    <!--Button Colour Styles-->
+    <SolidColorBrush x:Key="btnPrimaryBackground" Color="{StaticResource clrLightblue}"/>
+    <SolidColorBrush x:Key="btnPrimaryForeground" Color="{StaticResource clrWhite}"/>
+    <SolidColorBrush x:Key="btnPrimaryBorder" Color="{StaticResource clrDarkBlue}"/>
+
 </ResourceDictionary>
