@@ -26,5 +26,11 @@ namespace MathPracticePlatform.Views
             InitializeComponent();
             DataContext = new ExercisePageViewModel();
         }
+
+        private void TextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            textBox?.Focus();
+        }
     }
 }

@@ -16,15 +16,25 @@ namespace MathPracticePlatform.ViewModels
         private string _timerDisplay;
         private string _huidigeOefening;
         private string _userAntwoord;
+        private string _aantalOefeningen;
 
         private int _correctAntwoord;
-        private int _aantalOefeningen;
-        private int _score;
         private int _fouten;
+        private int _score;
+        private int _oefeningTeller;
+
+        private bool _isFocusd;
+
+        private List<string> _fouteOefeningen = new List<string>();
 
         private TimerService _timerService;
         private readonly RandomNumberService _randomNumberService;
 
+        public string AantalOefeningen
+        {
+            get => _aantalOefeningen;
+            set => SetProperty(ref _aantalOefeningen, value);
+        }
         public string TimerDisplay
         {
             get => _timerDisplay;
@@ -35,6 +45,36 @@ namespace MathPracticePlatform.ViewModels
         {
             get => _huidigeOefening;
             set => SetProperty(ref _huidigeOefening, value);
+        }
+
+        public string UserAntwoord
+        {
+            get => _userAntwoord;
+            set => SetProperty(ref _userAntwoord, value);
+        }
+
+        public int Fouten
+        {
+            get => _fouten;
+            set => SetProperty(ref _fouten, value);
+        }
+
+        public int Score
+        {
+            get => _score; 
+            set => SetProperty(ref _score, value);
+        }
+
+        private bool IsFocused
+        {
+            get => _isFocusd;
+            set => SetProperty(ref _isFocusd, value);
+        }
+
+        public List<string> FouteOefeningen
+        {
+            get => _fouteOefeningen;
+            set => SetProperty(ref _fouteOefeningen, value);
         }
 
         public ICommand NavigateBackCommand { get; }
@@ -55,8 +95,18 @@ namespace MathPracticePlatform.ViewModels
 
             NavigateBackCommand = new RelayCommand(GoBack);
             ControleerAntwoordCommand = new RelayCommand(ControleerAntwoord);
+            StartSpel();
+            
+        }
 
+        private void StartSpel()
+        {
+            _oefeningTeller = 0;
+            AantalOefeningen = $"0/20";
+            Score = 0;
+            Fouten = 0;
             GenereerNieuweOefening();
+            
         }
 
         private void GenereerNieuweOefening()
@@ -70,20 +120,41 @@ namespace MathPracticePlatform.ViewModels
 
         private void ControleerAntwoord()
         {
+
             if (int.TryParse(_userAntwoord, out int antwoord))
             {
                 if (antwoord == _correctAntwoord)
                 {
-                    MessageBox.Show("Correct!");
+                    Score++;
+                    _fouteOefeningen.Add($"Vraag: {_correctAntwoord} = {antwoord} (fout)");
                 }
                 else
                 {
-                    MessageBox.Show("Fout!");
+                    Fouten++;
                 }
+            }
+            else
+            {
+                Fouten++;
+                _fouteOefeningen.Add($"Vraag: {_correctAntwoord} = ? (Geen invoer)");
+            }
+
+            _oefeningTeller++;
+            AantalOefeningen = $"{_oefeningTeller}/20";
+
+            if (_oefeningTeller >= 20)
+            {
+                CustomNavigationService.Instance.Navigate());
+                return;
             }
 
             GenereerNieuweOefening();
+            UserAntwoord = string.Empty;
+
+            IsFocused = false;
+            IsFocused = true;
         }
+
 
         private void UpdatTimerDispclay(int timeInSeconds)
         {
