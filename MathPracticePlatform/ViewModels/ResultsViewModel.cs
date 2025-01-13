@@ -13,11 +13,13 @@ namespace MathPracticePlatform.ViewModels
     {
         public string _eindscore;
         public string _foutenLijst;
+        public string _resterendeTijd;
         public int Score { get; }
         public List<string> FoutenOefeningen { get;}
-        
+        public string ResterendeTijd { get; }
 
-        public string Eindscore
+
+        public string EindScore
         {
             get => _eindscore;
             set => SetProperty(ref _eindscore, value);
@@ -29,13 +31,15 @@ namespace MathPracticePlatform.ViewModels
             set => SetProperty(ref _foutenLijst, value);
         }
 
+
         public ICommand ButtonBackCommand { get; }
         public ICommand ButtonRestartCommand { get; }
 
-        public ResultsViewModel(List<string> foutenOefeningen, int score)
+        public ResultsViewModel(List<string> foutenOefeningen, int score, int resterendeTijd)
         {
             FoutenOefeningen = foutenOefeningen;
             Score = score;
+            ResterendeTijd = TimeSpan.FromSeconds(resterendeTijd).ToString(@"mm\:ss");
 
             ButtonBackCommand = new RelayCommand(GoBack);
             ButtonRestartCommand = new RelayCommand(Restart);
@@ -55,7 +59,7 @@ namespace MathPracticePlatform.ViewModels
 
         private void AddContent()
         {
-            Eindscore = $"Je hebt {Score} op 20";
+            EindScore = $"Je hebt {Score} op 20 in tijd van: {ResterendeTijd}" ;
 
             if (FoutenOefeningen != null)
             {

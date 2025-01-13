@@ -22,6 +22,7 @@ namespace MathPracticePlatform.ViewModels
         private int _fouten;
         private int _score;
         private int _oefeningTeller;
+        private int _overgeblevenTijd;
 
         private bool _isFocusd;
 
@@ -65,6 +66,12 @@ namespace MathPracticePlatform.ViewModels
             set => SetProperty(ref _score, value);
         }
 
+        public int OvergeblevenTijd
+        {
+            get => _overgeblevenTijd;
+            set => SetProperty(ref _overgeblevenTijd, value);
+        }
+
         private bool IsFocused
         {
             get => _isFocusd;
@@ -85,7 +92,7 @@ namespace MathPracticePlatform.ViewModels
             //instance of the timer service
             _timerService = new TimerService(180, isCountDown: true);
             _timerService.TimeUpdated += UpdatTimerDispclay;
-            _timerService.TimerFinished += OnTimerFinished;
+            _timerService.TimerFinished += NavigateToNextPage;
             _timerService.Start();
 
             //instance of the exercise service
@@ -157,17 +164,26 @@ namespace MathPracticePlatform.ViewModels
 
         private void NavigateToNextPage()
         {
-            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score));
+
+            CalculateRemainingTime();
+            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score, OvergeblevenTijd));
+        }
+
+        private void CalculateRemainingTime()
+        {
+           if (_timerService.GetRemainingTime() > 0)
+            {
+                OvergeblevenTijd = 180 - _timerService.GetRemainingTime();
+            }
+            else
+            {
+                OvergeblevenTijd = 0;
+            }
         }
 
         private void UpdatTimerDispclay(int timeInSeconds)
         {
             TimerDisplay = TimeSpan.FromSeconds(timeInSeconds).ToString(@"mm\:ss");
-        }
-
-        private void OnTimerFinished()
-        {
-            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score));
         }
 
         private void GoBack()
@@ -178,7 +194,5 @@ namespace MathPracticePlatform.ViewModels
             }
                 
         }
-
-
     }
 }
