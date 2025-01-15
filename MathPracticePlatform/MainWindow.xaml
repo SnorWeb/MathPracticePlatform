@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="Math Practice Platform"
         WindowState="Maximized">
-    <Window.Background>
-        <ImageBrush ImageSource="/Resources/Images/achtergrond2.jpeg" />
-    </Window.Background>
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

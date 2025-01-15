@@ -8,6 +8,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameDiscriptionPage">
+    <Page.Background>
+        <ImageBrush ImageSource="/Resources/Images/handleiding.jpg" />
+    </Page.Background>
     <Viewbox>
         <Grid Width="500" Height="400">
             <Grid.ColumnDefinitions>
