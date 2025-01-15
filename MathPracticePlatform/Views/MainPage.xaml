@@ -24,7 +24,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource grdBackTransBlack}" >
-                <Button x:Name="btnVermeningvuldigen" Content="Vermenigvuldigen" Click="btnVermenigvuldigen_Click" Margin="5" />
+                <Button x:Name="btnVermeningvuldigen" Content="Vermenigvuldigen" Command="{Binding DuplicateManualCommand}" Margin="5" />
+                <Button x:Name="btnDelen" Content="Delen" Command="{Binding DivideManualCommand}" Margin="5" />
                 <Button x:Name="btnOpties" Content="Opties" Click="btnOpties_Click" Margin="5" />
                 <Button x:Name="btnAfsluiten" Content="Afsluiten" Click="btnAfsluiten_Click" Margin="5" />
             </StackPanel>
