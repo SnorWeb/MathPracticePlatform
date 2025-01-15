@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!--Algemene stijl voor buttons-->
+    <!--PrimaryButtonStyle-->
     <Style TargetType="Button">
         <Setter Property="Background" Value="{StaticResource btnPrimaryBackground}"/>
         <Setter Property="Foreground" Value="{StaticResource btnPrimaryForeground}"/>
@@ -33,6 +34,48 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--BackButtonStyle-->
+    <Style x:Key="btnBackHome" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border 
+                        Margin="10,10,0,0"
+                        BorderThickness="2"
+                        BorderBrush="white"
+                        CornerRadius="5"
+                        Padding="2">
+                        <StackPanel Orientation="Vertical">
+                            <Path Data="{StaticResource HomeIconGeometry}" 
+                                  Fill="{StaticResource iconPrimaryForeground}" 
+                                  Stretch="Uniform" 
+                                  Width="25" 
+                                  Height="25"
+                                  Margin="2"/>
+                            <TextBlock Text="Home" 
+                                       Foreground="{StaticResource iconPrimaryForeground}" 
+                                       HorizontalAlignment="Center"
+                                       FontSize="{StaticResource FontSizeSmall}"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <!-- Default appearance settings -->
+        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
 
     <!--Algemene stijl voor TextBlocks-->
     <Style x:Key="txtTitle" TargetType="TextBlock">

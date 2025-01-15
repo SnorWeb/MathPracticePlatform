@@ -8,62 +8,72 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ExercisePage">
+    <Page.Background>
+        <ImageBrush ImageSource="/Resources/Images/Schoolbord.jpg" />
+    </Page.Background>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="grdTop">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid x:Name="grdTopLeft">
-                <Button x:Name="btnBack" Content="Back" Command="{Binding NavigateBackCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            </Grid>
-            <Grid x:Name="grdTopCenter" Grid.Column="1">
-                <TextBlock x:Name="txtTimer" Text="{Binding TimerDisplay, FallbackValue='Binding Failed'}" HorizontalAlignment="Center" VerticalAlignment="Top" />
-            </Grid>
-            <Grid x:Name="grdTopRight" Grid.Column="2">
+    <Viewbox>
+        <Grid Width="800" Height="400" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="grdTop">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="grdTopLeft">
+                    <Button x:Name="btnBack" Content="Back" Command="{Binding NavigateBackCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource btnBackHome}"/>
+                </Grid>
+                <Grid x:Name="grdTopCenter" Grid.Column="1">
+                    <TextBlock x:Name="txtTimer" Text="{Binding TimerDisplay, FallbackValue='Binding Failed'}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource txtStandaard}"/>
+                </Grid>
+                <Grid x:Name="grdTopRight" Grid.Column="2" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock x:Name="txtAantalOefeningen" Text="Oefeningen: " HorizontalAlignment="Right" Style="{StaticResource txtStandaard}" Margin="0"/>
+                        <TextBlock x:Name="txtScore" Text="Score: " HorizontalAlignment="Right" Style="{StaticResource txtStandaard}" Margin="0"/>
+                        <TextBlock x:Name="txtFouten" Text="Fouten: " HorizontalAlignment="Right" Style="{StaticResource txtStandaard}" Margin="0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock x:Name="txtAantalOefeningenValue" Text="{Binding AantalOefeningen,FallbackValue='N/A'}" Style="{StaticResource txtStandaard}" Margin="0"/>
+                        <TextBlock x:Name="txtScoreValue" Text="{Binding Score, FallbackValue='N/A'}" Style="{StaticResource txtStandaard}" Margin="0"/>
+                        <TextBlock x:Name="txtFoutenValue" Text="{Binding Fouten, FallbackValue='N/A'}" Style="{StaticResource txtStandaard}" Margin="0"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid x:Name="grdCenter" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <TextBlock x:Name="txtAantalOefeningen" Text="Oefeningen: " HorizontalAlignment="Right"/>
-                    <TextBlock x:Name="txtScore" Text="Score: " HorizontalAlignment="Right"/>
-                    <TextBlock x:Name="txtFouten" Text="Fouten: " HorizontalAlignment="Right"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock x:Name="txtAantalOefeningenValue" Text="{Binding AantalOefeningen}"/>
-                    <TextBlock x:Name="txtScoreValue" Text="{Binding Score}"/>
-                    <TextBlock x:Name="txtFoutenValue" Text="{Binding Fouten}"/>
-                </StackPanel>
+                <TextBlock Grid.Column="0" Text="{Binding HuidigeOefening, FallbackValue='Binding failed'}" FontSize="{StaticResource FontSizeHuge}" Style="{StaticResource txtStandaard}" VerticalAlignment="Center" Margin="0"/>
+                <TextBlock Grid.Column="1" Text="=" FontSize="{StaticResource FontSizeHuge}" VerticalAlignment="Center" Style="{StaticResource txtStandaard}" Margin="10,0,10,0"/>
+                <TextBox Grid.Column="2" 
+                    Text="{Binding UserAntwoord, UpdateSourceTrigger=PropertyChanged}" 
+                    FontSize="{StaticResource FontSizeHuge}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"     
+                    Width="40"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource txtPrimaryForeground}"
+                    Foreground="{StaticResource txtPrimaryForeground}"
+                    FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"
+                    Tag="{Binding IsFocused}"
+                    Loaded="TextBox_Loaded"
+                    helpers:FocusExtension.IsFocused="{Binding IsFocused, Mode=TwoWay}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding ControleerAntwoordCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
             </Grid>
         </Grid>
-        <Grid x:Name="grdCenter" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="{Binding HuidigeOefening, FallbackValue='Binding failed'}" FontSize="30"/>
-            <TextBlock Grid.Column="1" Text="=" FontSize="30" Margin="10,0,10,0"/>
-            <TextBox Grid.Column="2" 
-                     Text="{Binding UserAntwoord, UpdateSourceTrigger=PropertyChanged}" 
-                     FontSize="30" 
-                     Width="40"
-                     FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"
-                     Tag="{Binding IsFocused}"
-                     Loaded="TextBox_Loaded"
-                     helpers:FocusExtension.IsFocused="{Binding IsFocused, Mode=TwoWay}">
-                <TextBox.InputBindings>
-                    <KeyBinding Key="Enter" Command="{Binding ControleerAntwoordCommand}"/>
-                </TextBox.InputBindings>
-            </TextBox>
-        </Grid>
-    </Grid>
+    </Viewbox>
 </Page>

@@ -20,7 +20,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1" Grid.Column="1" Background="{StaticResource grdBackTransBlue}">
+            <Grid Grid.Row="1" Grid.Column="1" Background="{StaticResource grdBackTransBlack}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>

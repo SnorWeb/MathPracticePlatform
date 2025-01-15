@@ -17,6 +17,8 @@
     <!--Font Colour-->
     <SolidColorBrush x:Key="txtPrimaryForeground" Color="{StaticResource clrWhite}"/>
     
-    
+    <!--Icon Colour-->
+    <SolidColorBrush x:Key="iconPrimaryForeground" Color="{StaticResource clrWhite}"/>
+
 
 </ResourceDictionary>
