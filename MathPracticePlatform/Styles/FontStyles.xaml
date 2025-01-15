@@ -4,7 +4,17 @@
     
     <!--FontSize-->
     <sys:Double x:Key="FontSizeSmall">12</sys:Double>
-    <sys:Double x:Key="FontSizeNormal">16</sys:Double>
-    <sys:Double x:Key="FontSizeBig">20</sys:Double>
+    <sys:Double x:Key="FontSizeNormal">14</sys:Double>
+    <sys:Double x:Key="FontSizeBig">18</sys:Double>
+    <sys:Double x:Key="FontSizeHuge">22</sys:Double>
+
+    <!--FontFamily-->
+    <FontFamily x:Key="fontFamily">Segoe UI</FontFamily>
+
+    <!--FontWeight-->
+    <FontWeight x:Key="fontWeightNormal">Normal</FontWeight>
+    <FontWeight x:Key="fontWeightBold">Bold</FontWeight>
+
+    
 
 </ResourceDictionary>

@@ -33,4 +33,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--Algemene stijl voor TextBlocks-->
+    <Style x:Key="txtTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+        <Setter Property="FontFamily" Value="{StaticResource fontFamily}"/>
+        <Setter Property="FontWeight" Value="{StaticResource fontWeightBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource txtPrimaryForeground}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,0,5"/>
+    </Style>
+
+    <Style x:Key="txtStandaard" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeNormal}"/>
+        <Setter Property="FontFamily" Value="{StaticResource fontFamily}"/>
+        <Setter Property="FontWeight" Value="{StaticResource fontWeightNormal}"/>
+        <Setter Property="Foreground" Value="{StaticResource txtPrimaryForeground}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="20,0,20,5"/>
+    </Style>
 </ResourceDictionary>
