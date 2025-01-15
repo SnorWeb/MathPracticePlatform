@@ -7,33 +7,39 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ResultsPage">
+    <Page.Background>
+        <ImageBrush ImageSource="/Resources/Images/results2.jpg" />
+    </Page.Background>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="content" Grid.Row="1" Grid.Column="1">
+    <Viewbox>
+        <Grid Width="600" Height="300" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel>
-                <TextBlock Text="Results" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBlock Text="Volgende oefeningen waren fout: " FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding FoutenLijst, FallbackValue='Binding failed'}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="btnBack" Content="Hoofdmenu" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonBackCommand}"/>
-                <Button x:Name="btnRestart" Content="Nog eens" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonRestartCommand}"/>
-            </StackPanel>
+            <Grid x:Name="content" Grid.Row="1" Grid.Column="1" Background="{StaticResource grdBackTransBlack}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="20">
+                    <TextBlock Text="Score" Style="{StaticResource txtTitle}"/>
+                    <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}"/>
+                    <TextBlock Text="Volgende oefeningen waren fout: " Style="{StaticResource txtTitle}"/>
+                    <TextBlock Text="{Binding FoutenLijst, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="btnBack" Content="Hoofdmenu" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonBackCommand}"/>
+                    <Button x:Name="btnRestart" Content="Nog eens" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonRestartCommand}"/>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
+    
 </Page>

@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\achtergrond2.jpeg" />
+    <None Remove="Resources\Images\results.jpg" />
+    <None Remove="Resources\Images\Results2.jpg" />
     <None Remove="Resources\Images\Schoolbord.jpg" />
   </ItemGroup>
 
@@ -24,6 +26,10 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\achtergrond2.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\results.jpg" />
+    <Resource Include="Resources\Images\Results2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Images\Schoolbord.jpg">

@@ -59,7 +59,7 @@ namespace MathPracticePlatform.ViewModels
 
         private void AddContent()
         {
-            EindScore = $"Je hebt {Score} op 20 in tijd van: {ResterendeTijd}" ;
+            EindScore = $"Je hebt {Score} op 20 in een tijd van: {ResterendeTijd}" ;
 
             if (FoutenOefeningen != null)
             {
