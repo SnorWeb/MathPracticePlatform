@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:MathPracticePlatform"
         mc:Ignorable="d"
         Title="Math Practice Platform"
-        WindowState="Maximized"
-        >
+        WindowState="Maximized">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

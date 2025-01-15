@@ -7,24 +7,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
+    <Page.Background>
+        <ImageBrush ImageSource="/Resources/Images/achtergrond2.jpeg" />
+    </Page.Background>
 
-    <Grid>
-        
+    <Viewbox>
+        <Grid Width="400" Height="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource grdBackTransBlack}" >
                 <Button x:Name="btnVermeningvuldigen" Content="Vermenigvuldigen" Click="btnVermenigvuldigen_Click" Margin="5" />
                 <Button x:Name="btnOpties" Content="Opties" Click="btnOpties_Click" Margin="5" />
                 <Button x:Name="btnAfsluiten" Content="Afsluiten" Click="btnAfsluiten_Click" Margin="5" />
             </StackPanel>
-        
-    </Grid>
+
+        </Grid>
+    </Viewbox>
+    
 </Page>

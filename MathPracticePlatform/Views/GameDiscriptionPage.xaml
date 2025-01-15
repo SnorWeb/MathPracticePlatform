@@ -8,37 +8,42 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameDiscriptionPage">
-
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="1" Grid.Column="1">
+    <Page.Background>
+        <ImageBrush ImageSource="/Resources/Images/handleiding.jpg" />
+    </Page.Background>
+    <Viewbox>
+        <Grid Width="500" Height="400">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel>
-                <TextBlock Text="Speluitleg" FontSize="20" FontWeight="Bold" Margin="5" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding Description}" Margin="5" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-                <Button Content="Starten" 
-                    Width="100" 
-                    Margin="10" 
-                    Command="{Binding StartGameCommand}"/>
-                <Button Content="Hoofdmenu" 
-                    Width="100" 
-                    Margin="10" 
-                    Command="{Binding BackToMainMenuCommand}" />
-            </StackPanel>
+            <Grid Grid.Row="1" Grid.Column="1" Background="{StaticResource grdBackTransBlack}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Speluitleg" Style="{StaticResource txtTitle}"/>
+                    <TextBlock Text="{Binding Description, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <Button Content="Starten" 
+                Width="100" 
+                Margin="10" 
+                Command="{Binding StartGameCommand}"/>
+                    <Button Content="Hoofdmenu" 
+                Width="100" 
+                Margin="10" 
+                Command="{Binding BackToMainMenuCommand}" />
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Viewbox>
+    
 </Page>
