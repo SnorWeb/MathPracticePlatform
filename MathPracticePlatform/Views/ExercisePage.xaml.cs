@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MathPracticePlatform.Models;
 using MathPracticePlatform.ViewModels;
 
 namespace MathPracticePlatform.Views
@@ -21,10 +22,10 @@ namespace MathPracticePlatform.Views
     /// </summary>
     public partial class ExercisePage : Page
     {
-        public ExercisePage()
+        public ExercisePage(ExerciseType exerciseType)
         {
             InitializeComponent();
-            DataContext = new ExercisePageViewModel();
+            DataContext = new ExercisePageViewModel(exerciseType);
         }
 
         private void TextBox_Loaded(object sender, RoutedEventArgs e)

@@ -26,16 +26,12 @@ namespace MathPracticePlatform.Views
         public MainPage()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         private void btnVermenigvuldigen_Click(object sender, RoutedEventArgs e)
         {
-            string description = "Maak de 20 vermenigvuldigingen binnen de 3 minuten.\nVeel succes!";
-            CustomNavigationService.Instance.Navigate(new GameDiscriptionPage(
-                description, 
-                () => CustomNavigationService.Instance.Navigate(new ExercisePage()), 
-                () => CustomNavigationService.Instance.Navigate(new MainPage())
-                ));
+
         }
 
         

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MathPracticePlatform.Views;
+using MathPracticePlatform.Models;
 
 namespace MathPracticePlatform.ViewModels
 {
@@ -18,6 +19,7 @@ namespace MathPracticePlatform.ViewModels
         public List<string> FoutenOefeningen { get;}
         public string ResterendeTijd { get; }
 
+        private readonly ExerciseType _exerciseType;
 
         public string EindScore
         {
@@ -35,21 +37,23 @@ namespace MathPracticePlatform.ViewModels
         public ICommand ButtonBackCommand { get; }
         public ICommand ButtonRestartCommand { get; }
 
-        public ResultsViewModel(List<string> foutenOefeningen, int score, int resterendeTijd)
+        public ResultsViewModel(List<string> foutenOefeningen, int score, int resterendeTijd,ExerciseType exerciseType)
         {
             FoutenOefeningen = foutenOefeningen;
             Score = score;
             ResterendeTijd = TimeSpan.FromSeconds(resterendeTijd).ToString(@"mm\:ss");
+            _exerciseType = exerciseType;
 
             ButtonBackCommand = new RelayCommand(GoBack);
             ButtonRestartCommand = new RelayCommand(Restart);
+
 
             AddContent();
         }
 
         private void Restart(object obj)
         {
-            CustomNavigationService.Instance.Navigate(new ExercisePage());
+            CustomNavigationService.Instance.Navigate(new ExercisePage(_exerciseType));
         }
 
         private void GoBack(object obj)
