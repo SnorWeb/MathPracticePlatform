@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MathPracticePlatform.ViewModels;
 using MathPracticePlatform.Services;
+using MathPracticePlatform.Models;
 
 namespace MathPracticePlatform.Views
 {
@@ -22,11 +23,11 @@ namespace MathPracticePlatform.Views
     /// </summary>
     public partial class GameDiscriptionPage : Page
     {
-        public GameDiscriptionPage(string description, Action startGameAction, Action backToMainMenuAction)
+        public GameDiscriptionPage(string description,ExerciseType exerciseType  ,Action startGameAction, Action backToMainMenuAction)
         {
             InitializeComponent();
             
-            DataContext = new GameDescriptionViewModel(description, startGameAction, backToMainMenuAction);
+            DataContext = new GameDescriptionViewModel(description, exerciseType, startGameAction, backToMainMenuAction);
         }
     }
 }

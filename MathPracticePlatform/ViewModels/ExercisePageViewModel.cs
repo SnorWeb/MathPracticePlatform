@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MathPracticePlatform.Services;
 using System.Windows.Input;
 using System.Windows;
+using MathPracticePlatform.Models;
 
 namespace MathPracticePlatform.ViewModels
 {
@@ -26,10 +27,12 @@ namespace MathPracticePlatform.ViewModels
 
         private bool _isFocusd;
 
+
         private List<string> _fouteOefeningen = new List<string>();
 
         private TimerService _timerService;
         private readonly RandomNumberService _randomNumberService;
+        private readonly ExerciseType _exerciseType;
 
         public string AantalOefeningen
         {
@@ -87,7 +90,7 @@ namespace MathPracticePlatform.ViewModels
         public ICommand NavigateBackCommand { get; }
         public ICommand ControleerAntwoordCommand { get; }
 
-        public ExercisePageViewModel()
+        public ExercisePageViewModel(ExerciseType exerciseType)
         {
             //instance of the timer service
             _timerService = new TimerService(180, isCountDown: true);
@@ -97,8 +100,8 @@ namespace MathPracticePlatform.ViewModels
 
             //instance of the exercise service
             _randomNumberService = new RandomNumberService();
-            
 
+            _exerciseType = exerciseType;
 
             NavigateBackCommand = new RelayCommand(GoBack);
             ControleerAntwoordCommand = new RelayCommand(ControleerAntwoord);
@@ -166,7 +169,7 @@ namespace MathPracticePlatform.ViewModels
         {
 
             CalculateRemainingTime();
-            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score, OvergeblevenTijd));
+            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score, OvergeblevenTijd, _exerciseType));
         }
 
         private void CalculateRemainingTime()

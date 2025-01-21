@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MathPracticePlatform.Models;
 using MathPracticePlatform.ViewModels;
 
 namespace MathPracticePlatform.Views
@@ -21,10 +22,10 @@ namespace MathPracticePlatform.Views
     /// </summary>
     public partial class ResultsPage : Page
     {
-        public ResultsPage(List<string> foutenOefeningen, int score, int overgeblevenTijd)
+        public ResultsPage(List<string> foutenOefeningen, int score, int overgeblevenTijd, ExerciseType exerciseType)
         {
             InitializeComponent();
-            DataContext = new ResultsViewModel(foutenOefeningen, score, overgeblevenTijd);
+            DataContext = new ResultsViewModel(foutenOefeningen, score, overgeblevenTijd,exerciseType);
         }
     }
 }

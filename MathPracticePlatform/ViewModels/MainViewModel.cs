@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MathPracticePlatform.Services;
 using MathPracticePlatform.Views;
+using MathPracticePlatform.Models;
 
 namespace MathPracticePlatform.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
         private string _vermenigvuldiging;
         private string _delen;
@@ -32,27 +33,19 @@ namespace MathPracticePlatform.ViewModels
 
         public  MainViewModel()
         {
-            DuplicateManualCommand = new RelayCommand(CreateVermenigvuldigen);
-            DivideManualCommand = new RelayCommand(CreateDelen);
+            DuplicateManualCommand = new RelayCommand(() => NavigateToManual(ExerciseType.Multiplication));
+            DivideManualCommand = new RelayCommand(() => NavigateToManual(ExerciseType.Division));
         }
 
-        private void CreateDelen(object obj)
+        private void NavigateToManual(ExerciseType exerciseType)
         {
-            Delen = "Maak de 20 delingen binnen de 3 minuten.\nVeel succes!";
-            NavigateToManual(Delen);
-        }
-
-        private void CreateVermenigvuldigen(object obj)
-        {
-            Vermenigvuldiging = "Maak de 20 vermenigvuldigingen binnen de 3 minuten.\nVeel succes!";
-            NavigateToManual(Vermenigvuldiging);
-        }
-
-        private void NavigateToManual(string obj)
-        {
+            string description = exerciseType == ExerciseType.Multiplication
+                ? "Maak de 20 vermenigvuldigingen binnen de 3 minuten. \nVeel Succes!"
+                : "Maak de 20 delingen binnen de 3 minuten. \nVeel succes!";
             CustomNavigationService.Instance.Navigate(new GameDiscriptionPage(
-                obj,
-                () => CustomNavigationService.Instance.Navigate(new ExercisePage()),
+                description,
+                exerciseType,
+                () => CustomNavigationService.Instance.Navigate(new ExercisePage(exerciseType)),
                 () => CustomNavigationService.Instance.Navigate(new MainPage())
                 ));
         }

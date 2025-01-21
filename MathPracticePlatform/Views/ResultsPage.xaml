@@ -12,7 +12,7 @@
     </Page.Background>
 
     <Viewbox>
-        <Grid Width="600" Height="300" >
+        <Grid Width="600" Height="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
@@ -23,20 +23,31 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
             <Grid x:Name="content" Grid.Row="1" Grid.Column="1" Background="{StaticResource grdBackTransBlack}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Margin="20">
-                    <TextBlock Text="Score" Style="{StaticResource txtTitle}"/>
-                    <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}"/>
-                    <TextBlock Text="Volgende oefeningen waren fout: " Style="{StaticResource txtTitle}"/>
-                    <TextBlock Text="{Binding FoutenLijst, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="btnBack" Content="Hoofdmenu" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonBackCommand}"/>
-                    <Button x:Name="btnRestart" Content="Nog eens" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonRestartCommand}"/>
+
+                <!-- Scrollable TextBlock -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Margin="20">
+                    <StackPanel>
+                        <TextBlock Text="Score" Style="{StaticResource txtTitle}" />
+                        <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}" />
+                        <TextBlock Text="Volgende oefeningen waren fout: " Style="{StaticResource txtTitle}" />
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="100">
+                            <TextBlock Text="{Binding FoutenLijst, FallbackValue='Binding failed'}" 
+                                       Style="{StaticResource txtStandaard}" 
+                                       TextWrapping="Wrap" />
+                        </ScrollViewer>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button x:Name="btnBack" Content="Hoofdmenu" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonBackCommand}" />
+                    <Button x:Name="btnRestart" Content="Nog eens" HorizontalAlignment="Center" Margin="5" Command="{Binding ButtonRestartCommand}" />
                 </StackPanel>
             </Grid>
         </Grid>
