@@ -27,14 +27,13 @@ namespace MathPracticePlatform.Services
             return (number1, number2);
         }
 
-        public (int number1, int number2) GenerateDivisionExercise(int min, int max)
+        public (int dividend, int divisor) GenerateDivisionExercise(int min, int max)
         {
-            int divisor = GetRandomNumber(1, 10);
-            int dividend = divisor * GetRandomNumber(1, 10);
+            int divisor = GetRandomNumber(min, max);
+            int quotient = GetRandomNumber(min, max); // Dit is het resultaat van de deling
+            int dividend = divisor * quotient; // Dividend berekenen zodat het deelbaar is door divisor
 
-            return(dividend, divisor);
+            return (dividend, divisor);
         }
-
-
     }
 }

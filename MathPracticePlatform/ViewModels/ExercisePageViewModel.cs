@@ -121,6 +121,28 @@ namespace MathPracticePlatform.ViewModels
 
         private void GenereerNieuweOefening()
         {
+            if (_exerciseType == ExerciseType.Multiplication)
+            {
+                GenerateMultiplication();
+            }
+            else
+            {
+                GenerateDivision();
+            }
+
+        }
+
+        private void GenerateDivision()
+        {
+            
+            var (dividend, divisor) = _randomNumberService.GenerateDivisionExercise(1, 10);
+
+            _correctAntwoord = dividend / divisor; 
+            HuidigeOefening = $"{dividend} : {divisor}";
+        }
+
+        private void GenerateMultiplication()
+        {
             int getal1 = _randomNumberService.GetRandomNumber(0, 10);
             int getal2 = _randomNumberService.GetRandomNumber(0, 10);
 
