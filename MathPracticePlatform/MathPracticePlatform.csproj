@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\GIF\fuegos-fired.gif" />
     <None Remove="Resources\Images\achtergrond2.jpeg" />
     <None Remove="Resources\Images\handleiding.jpg" />
     <None Remove="Resources\Images\results.jpg" />
@@ -19,9 +20,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\GIF\fuegos-fired.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\achtergrond2.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

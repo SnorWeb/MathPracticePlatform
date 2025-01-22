@@ -16,6 +16,21 @@ namespace MathPracticePlatform.ViewModels
         public string _foutenLijst;
         public string _resterendeTijd;
         public string _title;
+        private string _fout;
+
+        private Uri _gifsource;
+
+        public Uri GifSource
+        {
+            get => _gifsource;
+            set => SetProperty(ref _gifsource, value);
+        }
+
+        public string Fout
+        {
+            get => _fout;
+            set => SetProperty(ref _fout, value);
+        }
 
         public string Title
         {
@@ -75,14 +90,16 @@ namespace MathPracticePlatform.ViewModels
 
             if (FoutenOefeningen != null)
             {
+                Fout = "Fouten: ";
                 foreach (var fout in FoutenOefeningen)
                 {
                     FoutenLijst += fout + "\n";
                 }
             }
-            else
+            if (Score == 20)
             {
-                FoutenLijst = "Geen fouten gemaakt!";
+                Fout = "";
+                GifSource = new Uri("pack://application:,,,/Resources/GIF/fuegos-fired.gif");
             }
         }
 
