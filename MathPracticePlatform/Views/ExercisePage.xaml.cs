@@ -33,5 +33,6 @@ namespace MathPracticePlatform.Views
             var textBox = sender as TextBox;
             textBox?.Focus();
         }
+
     }
 }

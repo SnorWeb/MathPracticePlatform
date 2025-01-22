@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MathPracticePlatform.Views"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ResultsPage">
@@ -33,14 +34,16 @@
                 <!-- Scrollable TextBlock -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Margin="20">
                     <StackPanel>
-                        <TextBlock Text="Score" Style="{StaticResource txtTitle}" />
+                        <TextBlock Text="{Binding Title, FallbackValue='Binding failed'}" Style="{StaticResource txtTitle}" />
                         <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}" />
-                        <TextBlock Text="Volgende oefeningen waren fout: " Style="{StaticResource txtTitle}" />
+                        <TextBlock Text="{Binding Fout}" Style="{StaticResource txtTitle}" />
+                        <Image gif:ImageBehavior.AnimatedSource="{Binding GifSource}" Height="30" Width="30"/>
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="100">
                             <TextBlock Text="{Binding FoutenLijst, FallbackValue='Binding failed'}" 
                                        Style="{StaticResource txtStandaard}" 
                                        TextWrapping="Wrap" />
                         </ScrollViewer>
+                        
                     </StackPanel>
                 </ScrollViewer>
 

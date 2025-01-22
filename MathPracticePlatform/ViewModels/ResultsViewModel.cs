@@ -15,6 +15,28 @@ namespace MathPracticePlatform.ViewModels
         public string _eindscore;
         public string _foutenLijst;
         public string _resterendeTijd;
+        public string _title;
+        private string _fout;
+
+        private Uri _gifsource;
+
+        public Uri GifSource
+        {
+            get => _gifsource;
+            set => SetProperty(ref _gifsource, value);
+        }
+
+        public string Fout
+        {
+            get => _fout;
+            set => SetProperty(ref _fout, value);
+        }
+
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
         public int Score { get; }
         public List<string> FoutenOefeningen { get;}
         public string ResterendeTijd { get; }
@@ -49,6 +71,7 @@ namespace MathPracticePlatform.ViewModels
 
 
             AddContent();
+            CreateTitle();
         }
 
         private void Restart(object obj)
@@ -67,14 +90,38 @@ namespace MathPracticePlatform.ViewModels
 
             if (FoutenOefeningen != null)
             {
+                Fout = "Fouten: ";
                 foreach (var fout in FoutenOefeningen)
                 {
                     FoutenLijst += fout + "\n";
                 }
             }
-            else
+            if (Score == 20)
             {
-                FoutenLijst = "Geen fouten gemaakt!";
+                Fout = "";
+                GifSource = new Uri("pack://application:,,,/Resources/GIF/fuegos-fired.gif");
+            }
+        }
+
+        private void CreateTitle()
+        {
+            switch (Score)
+            {
+                case < 5:
+                    Title = "Blijven oefenen!";
+                    break;
+                case < 10:
+                    Title = "Jammer, volgende keer beter";
+                    break;
+                case < 15:
+                    Title = "Goed gedaan!";
+                    break;
+                case < 20:
+                    Title = "Sterk bezig, bijna alles goed!";
+                    break;
+                default:
+                    Title = "Ongelooflijk, je hebt alles goed!";
+                    break;
             }
         }
     }

@@ -23,7 +23,7 @@ namespace MathPracticePlatform.Views
     /// </summary>
     public partial class GameDiscriptionPage : Page
     {
-        public GameDiscriptionPage(string description,ExerciseType exerciseType  ,Action startGameAction, Action backToMainMenuAction)
+        public GameDiscriptionPage(string description, ExerciseType exerciseType  ,Action startGameAction, Action backToMainMenuAction)
         {
             InitializeComponent();
             

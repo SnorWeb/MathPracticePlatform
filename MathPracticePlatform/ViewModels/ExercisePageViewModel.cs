@@ -9,6 +9,8 @@ using MathPracticePlatform.Services;
 using System.Windows.Input;
 using System.Windows;
 using MathPracticePlatform.Models;
+using System.Security.Permissions;
+using System.Windows.Media;
 
 namespace MathPracticePlatform.ViewModels
 {
@@ -27,12 +29,15 @@ namespace MathPracticePlatform.ViewModels
 
         private bool _isFocusd;
 
+        private Brush _textboxForeground;
 
         private List<string> _fouteOefeningen = new List<string>();
 
         private TimerService _timerService;
         private readonly RandomNumberService _randomNumberService;
         private readonly ExerciseType _exerciseType;
+        private readonly AudioService _audioService;
+
 
         public string AantalOefeningen
         {
@@ -87,6 +92,12 @@ namespace MathPracticePlatform.ViewModels
             set => SetProperty(ref _fouteOefeningen, value);
         }
 
+        public Brush TextboxForeground
+        {
+            get => _textboxForeground;
+            set => SetProperty(ref _textboxForeground, value);
+        }
+
         public ICommand NavigateBackCommand { get; }
         public ICommand ControleerAntwoordCommand { get; }
 
@@ -102,6 +113,10 @@ namespace MathPracticePlatform.ViewModels
             _randomNumberService = new RandomNumberService();
 
             _exerciseType = exerciseType;
+
+            _audioService = new AudioService();
+
+            TextboxForeground = Brushes.White;
 
             NavigateBackCommand = new RelayCommand(GoBack);
             ControleerAntwoordCommand = new RelayCommand(ControleerAntwoord);
@@ -121,6 +136,7 @@ namespace MathPracticePlatform.ViewModels
 
         private void GenereerNieuweOefening()
         {
+            
             if (_exerciseType == ExerciseType.Multiplication)
             {
                 GenerateMultiplication();
@@ -150,26 +166,34 @@ namespace MathPracticePlatform.ViewModels
             HuidigeOefening = $"{getal1} X {getal2}";
         }
 
-        private void ControleerAntwoord()
+        private async void ControleerAntwoord()
         {
 
             if (int.TryParse(_userAntwoord, out int antwoord))
             {
                 if (antwoord == _correctAntwoord)
                 {
+                    TextboxForeground = Brushes.Green;
+                    _audioService.PlaySound("Resources/Sounds/correct.mp3");
                     Score++;
                 }
                 else
                 {
+                    TextboxForeground = Brushes.Red;
+                    _audioService.PlaySound("Resources/Sounds/wrong.mp3");
                     Fouten++;
                     _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord}");
                 }
             }
             else
             {
+                TextboxForeground = Brushes.Red;
+                _audioService.PlaySound("Resources/Sounds/wrong.mp3");
                 Fouten++;
                 _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord} (verkeerde input)");
             }
+
+            await ResetForegroundAfterDelay();
 
             _oefeningTeller++;
             AantalOefeningen = $"{_oefeningTeller}/20";
@@ -185,6 +209,12 @@ namespace MathPracticePlatform.ViewModels
 
             IsFocused = false;
             IsFocused = true;
+        }
+
+        private async Task ResetForegroundAfterDelay()
+        {
+            await Task.Delay(500);
+            TextboxForeground = Brushes.White;
         }
 
         private void NavigateToNextPage()
