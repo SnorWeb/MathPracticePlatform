@@ -33,7 +33,7 @@
                 <!-- Scrollable TextBlock -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Margin="20">
                     <StackPanel>
-                        <TextBlock Text="Score" Style="{StaticResource txtTitle}" />
+                        <TextBlock Text="{Binding Title, FallbackValue='Binding failed'}" Style="{StaticResource txtTitle}" />
                         <TextBlock Text="{Binding EindScore, FallbackValue='Binding failed'}" Style="{StaticResource txtStandaard}" />
                         <TextBlock Text="Volgende oefeningen waren fout: " Style="{StaticResource txtTitle}" />
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="100">

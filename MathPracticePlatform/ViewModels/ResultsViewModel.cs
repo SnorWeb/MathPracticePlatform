@@ -15,6 +15,13 @@ namespace MathPracticePlatform.ViewModels
         public string _eindscore;
         public string _foutenLijst;
         public string _resterendeTijd;
+        public string _title;
+
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
         public int Score { get; }
         public List<string> FoutenOefeningen { get;}
         public string ResterendeTijd { get; }
@@ -49,6 +56,7 @@ namespace MathPracticePlatform.ViewModels
 
 
             AddContent();
+            CreateTitle();
         }
 
         private void Restart(object obj)
@@ -75,6 +83,28 @@ namespace MathPracticePlatform.ViewModels
             else
             {
                 FoutenLijst = "Geen fouten gemaakt!";
+            }
+        }
+
+        private void CreateTitle()
+        {
+            switch (Score)
+            {
+                case < 5:
+                    Title = "Blijven oefenen!";
+                    break;
+                case < 10:
+                    Title = "Jammer, volgende keer beter";
+                    break;
+                case < 15:
+                    Title = "Goed gedaan!";
+                    break;
+                case < 20:
+                    Title = "Sterk bezig, bijna alles goed!";
+                    break;
+                default:
+                    Title = "Ongelooflijk, je hebt alles goed!";
+                    break;
             }
         }
     }
