@@ -16,6 +16,8 @@
     <None Remove="Resources\Images\results.jpg" />
     <None Remove="Resources\Images\Results2.jpg" />
     <None Remove="Resources\Images\Schoolbord.jpg" />
+    <None Remove="Resources\Sounds\correct.mp3" />
+    <None Remove="Resources\Sounds\wrong.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +42,12 @@
     <Resource Include="Resources\Images\Schoolbord.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Resources\Sounds\correct.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Sounds\wrong.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,7 @@ using MathPracticePlatform.Services;
 using System.Windows.Input;
 using System.Windows;
 using MathPracticePlatform.Models;
+using System.Security.Permissions;
 
 namespace MathPracticePlatform.ViewModels
 {
@@ -33,6 +34,8 @@ namespace MathPracticePlatform.ViewModels
         private TimerService _timerService;
         private readonly RandomNumberService _randomNumberService;
         private readonly ExerciseType _exerciseType;
+        private readonly AudioService _audioService;
+
 
         public string AantalOefeningen
         {
@@ -103,6 +106,8 @@ namespace MathPracticePlatform.ViewModels
 
             _exerciseType = exerciseType;
 
+            _audioService = new AudioService();
+
             NavigateBackCommand = new RelayCommand(GoBack);
             ControleerAntwoordCommand = new RelayCommand(ControleerAntwoord);
             StartSpel();
@@ -157,16 +162,19 @@ namespace MathPracticePlatform.ViewModels
             {
                 if (antwoord == _correctAntwoord)
                 {
+                    _audioService.PlaySound("Resources/Sounds/correct.mp3");
                     Score++;
                 }
                 else
                 {
+                    _audioService.PlaySound("Resources/Sounds/wrong.mp3");
                     Fouten++;
                     _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord}");
                 }
             }
             else
             {
+                _audioService.PlaySound("Resources/Sounds/wrong.mp3");
                 Fouten++;
                 _fouteOefeningen.Add($"{HuidigeOefening} = {_correctAntwoord} (verkeerde input)");
             }
