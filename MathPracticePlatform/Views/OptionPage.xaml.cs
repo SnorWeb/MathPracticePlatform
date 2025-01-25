@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MathPracticePlatform.ViewModels;
 
 namespace MathPracticePlatform.Views
 {
@@ -20,9 +21,11 @@ namespace MathPracticePlatform.Views
     /// </summary>
     public partial class OptionPage : Page
     {
+
         public OptionPage()
         {
             InitializeComponent();
+            DataContext = new OptionsViewModel();
         }
     }
 }
