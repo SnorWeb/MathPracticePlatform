@@ -13,6 +13,7 @@
     <None Remove="Resources\GIF\fuegos-fired.gif" />
     <None Remove="Resources\Images\achtergrond2.jpeg" />
     <None Remove="Resources\Images\handleiding.jpg" />
+    <None Remove="Resources\Images\opties.jpg" />
     <None Remove="Resources\Images\results.jpg" />
     <None Remove="Resources\Images\Results2.jpg" />
     <None Remove="Resources\Images\Schoolbord.jpg" />
@@ -33,6 +34,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Images\handleiding.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\opties.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Images\results.jpg" />
