@@ -30,11 +30,18 @@ namespace MathPracticePlatform.ViewModels
 
         public ICommand DuplicateManualCommand { get; }
         public ICommand DivideManualCommand { get; }
+        public ICommand NavigateToOptionsCommand { get; }
 
         public  MainViewModel()
         {
             DuplicateManualCommand = new RelayCommand(() => NavigateToManual(ExerciseType.Multiplication));
             DivideManualCommand = new RelayCommand(() => NavigateToManual(ExerciseType.Division));
+            NavigateToOptionsCommand = new RelayCommand(() => NavigateToOptions());
+        }
+
+        private void NavigateToOptions()
+        {
+            CustomNavigationService.Instance.Navigate(new OptionPage());
         }
 
         private void NavigateToManual(ExerciseType exerciseType)
