@@ -18,6 +18,7 @@ namespace MathPracticePlatform.ViewModels
         public string _title;
         private string _fout;
 
+
         private Uri _gifsource;
 
         public Uri GifSource
@@ -40,6 +41,7 @@ namespace MathPracticePlatform.ViewModels
         public int Score { get; }
         public List<string> FoutenOefeningen { get;}
         public string ResterendeTijd { get; }
+        public bool IsTimeUp {  get; }
 
         private readonly ExerciseType _exerciseType;
 
@@ -59,12 +61,13 @@ namespace MathPracticePlatform.ViewModels
         public ICommand ButtonBackCommand { get; }
         public ICommand ButtonRestartCommand { get; }
 
-        public ResultsViewModel(List<string> foutenOefeningen, int score, int resterendeTijd,ExerciseType exerciseType)
+        public ResultsViewModel(List<string> foutenOefeningen, int score, int resterendeTijd,ExerciseType exerciseType, bool isTimeUp)
         {
             FoutenOefeningen = foutenOefeningen;
             Score = score;
             ResterendeTijd = TimeSpan.FromSeconds(resterendeTijd).ToString(@"mm\:ss");
             _exerciseType = exerciseType;
+            IsTimeUp = isTimeUp;
 
             ButtonBackCommand = new RelayCommand(GoBack);
             ButtonRestartCommand = new RelayCommand(Restart);
@@ -84,6 +87,7 @@ namespace MathPracticePlatform.ViewModels
             CustomNavigationService.Instance.Navigate(new MainPage());
         }
 
+        //Zorg dat de titel goed komt. Volgens mij wordt de bool vanop de vorige pagina niet goed doorgegeven.
         private void AddContent()
         {
             EindScore = $"Je hebt {Score} op 20 in een tijd van: {ResterendeTijd}" ;
@@ -104,6 +108,19 @@ namespace MathPracticePlatform.ViewModels
         }
 
         private void CreateTitle()
+        {
+            if (IsTimeUp)
+            {
+                Title = "Tijd is op!";
+                EindScore = $"Je hebt {Score} op 20.";
+            }
+            else
+            {
+                GradeTitle();
+            }
+        }
+
+        private void GradeTitle()
         {
             switch (Score)
             {

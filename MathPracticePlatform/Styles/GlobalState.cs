@@ -10,7 +10,10 @@ namespace MathPracticePlatform.Styles
     {
         private static GlobalState instance;
         public static GlobalState Instance => instance ?? (instance = new GlobalState());
-        
-        public int TimeLimit { get; set; }
+
+        private int? _timeLimit;
+        public int TimeLimit{
+            get => _timeLimit ?? 30; 
+            set => _timeLimit = value; }
     }
 }

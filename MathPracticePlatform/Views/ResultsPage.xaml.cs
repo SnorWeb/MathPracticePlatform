@@ -22,10 +22,10 @@ namespace MathPracticePlatform.Views
     /// </summary>
     public partial class ResultsPage : Page
     {
-        public ResultsPage(List<string> foutenOefeningen, int score, int overgeblevenTijd, ExerciseType exerciseType)
+        public ResultsPage(List<string> foutenOefeningen, int score, int overgeblevenTijd, ExerciseType exerciseType, bool isTimeUp)
         {
             InitializeComponent();
-            DataContext = new ResultsViewModel(foutenOefeningen, score, overgeblevenTijd,exerciseType);
+            DataContext = new ResultsViewModel(foutenOefeningen, score, overgeblevenTijd,exerciseType, isTimeUp);
         }
     }
 }

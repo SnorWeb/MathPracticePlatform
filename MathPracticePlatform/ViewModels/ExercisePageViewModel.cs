@@ -11,6 +11,7 @@ using System.Windows;
 using MathPracticePlatform.Models;
 using System.Security.Permissions;
 using System.Windows.Media;
+using MathPracticePlatform.Styles;
 
 namespace MathPracticePlatform.ViewModels
 {
@@ -26,8 +27,10 @@ namespace MathPracticePlatform.ViewModels
         private int _score;
         private int _oefeningTeller;
         private int _overgeblevenTijd;
+        private int _timeLimit;
 
         private bool _isFocusd;
+        private bool _isTimeUp;
 
         private Brush _textboxForeground;
 
@@ -80,10 +83,22 @@ namespace MathPracticePlatform.ViewModels
             set => SetProperty(ref _overgeblevenTijd, value);
         }
 
+        public int TimeLimit
+        {
+            get => _timeLimit;
+            set => SetProperty(ref _timeLimit, value);
+        }
+
         private bool IsFocused
         {
             get => _isFocusd;
             set => SetProperty(ref _isFocusd, value);
+        }
+
+        public bool IsTimeUp
+        {
+            get => _isTimeUp;
+            set => SetProperty(ref _isTimeUp, value);
         }
 
         public List<string> FoutenOefeningen
@@ -103,8 +118,10 @@ namespace MathPracticePlatform.ViewModels
 
         public ExercisePageViewModel(ExerciseType exerciseType)
         {
+            TimeLimit = GlobalState.Instance.TimeLimit;
+
             //instance of the timer service
-            _timerService = new TimerService(180, isCountDown: true);
+            _timerService = new TimerService(TimeLimit, isCountDown: true);
             _timerService.TimeUpdated += UpdatTimerDispclay;
             _timerService.TimerFinished += NavigateToNextPage;
             _timerService.Start();
@@ -213,7 +230,7 @@ namespace MathPracticePlatform.ViewModels
 
         private async Task ResetForegroundAfterDelay()
         {
-            await Task.Delay(500);
+            await Task.Delay(200);
             TextboxForeground = Brushes.White;
         }
 
@@ -221,18 +238,23 @@ namespace MathPracticePlatform.ViewModels
         {
 
             CalculateRemainingTime();
-            CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score, OvergeblevenTijd, _exerciseType));
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                CustomNavigationService.Instance.Navigate(new ResultsPage(FoutenOefeningen, Score, OvergeblevenTijd, _exerciseType, IsTimeUp));
+            });
+            IsTimeUp = false;
         }
 
         private void CalculateRemainingTime()
         {
-           if (_timerService.GetRemainingTime() > 0)
+           if (_timerService.GetRemainingTime() >= 0)
             {
-                OvergeblevenTijd = 180 - _timerService.GetRemainingTime();
+                OvergeblevenTijd = TimeLimit - _timerService.GetRemainingTime();
             }
             else
             {
                 OvergeblevenTijd = 0;
+                IsTimeUp = true;
             }
         }
 
