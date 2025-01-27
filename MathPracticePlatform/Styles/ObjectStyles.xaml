@@ -78,7 +78,7 @@
     </Style>
 
 
-    <!--Algemene stijl voor TextBlocks-->
+    <!--Title stijl voor TextBlocks-->
     <Style x:Key="txtTitle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
         <Setter Property="FontFamily" Value="{StaticResource fontFamily}"/>
@@ -88,6 +88,7 @@
         <Setter Property="Margin" Value="0,0,0,5"/>
     </Style>
 
+    <!--Algemene stijl voor Textblock-->
     <Style x:Key="txtStandaard" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource FontSizeNormal}"/>
         <Setter Property="FontFamily" Value="{StaticResource fontFamily}"/>
@@ -95,5 +96,11 @@
         <Setter Property="Foreground" Value="{StaticResource txtPrimaryForeground}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="20,0,20,5"/>
+    </Style>
+    
+    <!--Error stijl voor Textblock-->
+    <Style x:Key="txtError" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}"/>
+        <Setter Property="Foreground" Value="{StaticResource txtErrorForeground}"/>
     </Style>
 </ResourceDictionary>

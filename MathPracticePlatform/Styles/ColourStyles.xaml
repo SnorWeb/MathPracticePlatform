@@ -5,6 +5,7 @@
     <Color x:Key="clrLightblue">#3d8dc4</Color>
     <Color x:Key="clrWhite">#ffffff</Color>
     <Color x:Key="clrDarkBlue">#1a4563</Color>
+    <Color x:Key="clrError">red</Color>
 
     <!--Grid Background Colours-->
     <SolidColorBrush x:Key="grdBackTransBlack" Color="{StaticResource clrTransBlack}"/>
@@ -16,7 +17,8 @@
     
     <!--Font Colour-->
     <SolidColorBrush x:Key="txtPrimaryForeground" Color="{StaticResource clrWhite}"/>
-    
+    <SolidColorBrush x:Key="txtErrorForeground" Color="{StaticResource clrError}"/>
+
     <!--Icon Colour-->
     <SolidColorBrush x:Key="iconPrimaryForeground" Color="{StaticResource clrWhite}"/>
 

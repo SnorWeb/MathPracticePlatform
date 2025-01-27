@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     
     <!--FontSize-->
-    <sys:Double x:Key="FontSizeSmall">12</sys:Double>
+    <sys:Double x:Key="FontSizeSmall">6</sys:Double>
     <sys:Double x:Key="FontSizeNormal">14</sys:Double>
     <sys:Double x:Key="FontSizeBig">18</sys:Double>
     <sys:Double x:Key="FontSizeHuge">22</sys:Double>
