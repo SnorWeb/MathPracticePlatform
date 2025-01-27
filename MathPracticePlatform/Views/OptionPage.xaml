@@ -30,10 +30,19 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding ErrorMessage, FallbackValue='Binding error'}" HorizontalAlignment="Center" Margin="0,10,0,0" Style="{StaticResource txtError}"/>
+                <TextBlock Text="{Binding ErrorMessage, FallbackValue='Binding error', UpdateSourceTrigger=PropertyChanged}" 
+                           HorizontalAlignment="Center" 
+                           Margin="0,10,0,0" 
+                           Style="{StaticResource txtError}"/>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,10,20" HorizontalAlignment="Center">
                     <TextBlock Text="Tijd in seconden: " Style="{StaticResource txtStandaard}" Margin="5"/>
-                    <TextBox Width="30" Height="20"/>
+                    <TextBox Width="30" Height="20"
+                             Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}"
+                             >
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SaveCommand}" Key="Enter"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
                 </StackPanel>
             </Grid>
         </Grid>
